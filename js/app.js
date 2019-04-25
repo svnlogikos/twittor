@@ -1,6 +1,13 @@
+var url = window.location.href; //Obtiene la url del navegador
+var swLocation = "/twittor/sw.js"; //ubicación de donde se encuentra el service worker en prod
+
 //Registrar SW
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/sw.js");
+  //Si la url incluye localhost entonces estoy en desarrollo, si no lo registra con la url de prod
+  if (url.includes("localhost")) {
+    swLocation = "/sw.js";
+  }
+  navigator.serviceWorker.register(swLocation);
 }
 
 // Referencias de jQuery
